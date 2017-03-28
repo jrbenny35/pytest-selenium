@@ -23,8 +23,8 @@ class SauceLabs(Provider):
 
     @property
     def executor(self):
-        return 'http://{0}:{1}@ondemand.saucelabs.com:80/wd/hub'.format(
-            self.username, self.key)
+        return 'http://{0}:{1}@{2}'.format(
+            self.username, self.key, self.url)
 
     @property
     def name(self):
@@ -37,6 +37,10 @@ class SauceLabs(Provider):
     @property
     def key(self):
         return self.get_credential('key', 'SAUCELABS_API_KEY')
+
+    @property
+    def url(self):
+        return self.get_credential('url', 'SAUCELABS_URL')
 
 
 @pytest.mark.optionalhook
